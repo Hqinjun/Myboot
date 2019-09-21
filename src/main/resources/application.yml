@@ -1,0 +1,98 @@
+
+info:
+  blog-url: http://Hqinjun.com
+  author: Hqinjun
+  version: Myboot.0.0.1
+spring:
+  data:
+    elasticsearch:
+      cluster-nodes: 192.168.159.128:9300
+      repositories:
+        enabled: true
+  profiles:
+    active: uat
+  resources:
+    static-locations: classpath:/templates/
+  thymeleaf:
+    prefix: classpath:/templates/
+  security:
+    user:
+      name: user
+      password: 123
+#    basic:
+#      enabled: true
+#      path: /user
+  redis:
+    database: 0
+    host: 192.168.159.128
+    port: 6379
+    password: 123456
+    timeout: 1000
+    jedis:
+     pool:
+       max-active: 200
+       max-wait: 100
+       max-idle: 100
+       min-idle: 1
+  rabbitmq:
+    host: 192.168.159.128
+    port: 5672
+    username: admin
+    password: admin
+    publisher-confirms: true
+  datasource:
+    #192.168.159.128/45.80.184.22
+    url: jdbc:mysql://192.168.159.128:3306/dockerdb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    driverclassname: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    jpa:
+      open-in-view: false
+      database: MySQL
+      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+
+server:
+  port: 12345
+
+#logging:
+#  level:
+#    org.springframework.web: trace
+#    org.hibernate: DEBUG
+boot:
+  hello : hello world
+
+#  health:
+#    sensitive: true
+#    show-details: always
+#  restart:
+#    enabled: true
+#  shutdown:
+#    enabled: true
+
+#    beans:
+#      enabled: false
+#    health:
+#      enabled: false
+#    shutdown:
+#      enabled: true
+
+
+management:
+  endpoint:
+    beans:
+      enabled: true
+    health:
+      enabled: true
+      show-details: always
+    shutdown:
+      enabled: true
+    restart:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: env,beans
